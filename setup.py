@@ -1,6 +1,6 @@
 import sys
 
-from setuptools import setup
+from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
 class PyTest(TestCommand):
@@ -23,7 +23,10 @@ setup(
     description="Converts ANSI coded text and converts it to either plain text or to HTML.",
     long_description="See documentation at http://pythonhosted.org/ansiconv/",
     license='MIT',
-    py_modules=['ansiconv'],
+    packages = find_packages(
+        where = '.',
+        exclude = ('docs', 'tests')
+    ),
     tests_require=['pytest'],
     test_suite='test.test_ansiconv',
     cmdclass={
